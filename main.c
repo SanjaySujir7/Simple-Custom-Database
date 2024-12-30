@@ -43,13 +43,13 @@ int main(){
     Column_Data Array[15];
     Column_Data Column1 = {"Name","String",50};
     Column_Data Column2 = {"Age","Number",0};
-    Column_Data Column3 = {"Gender","String",10};
+    Column_Data Column3 = {"Roll_NO","Number",10};
 
     Array[0] = Column1;
     Array[1] = Column2;
     Array[2] = Column3;
 
-    Return = Create_Table("my.cdb","Person",Array,3);
+    Return = Create_Table("my.cdb","Student",Array,3);
 
     if(Return != 0){
         printf("Something Gone Wrong!");
