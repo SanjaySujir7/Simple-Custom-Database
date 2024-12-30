@@ -2,6 +2,11 @@
 #include<stdio.h>
 #include "Resource.h"
 
+/*
+    This is file contain code for connecting other module. Whole project is documented. added comments so it makes easy for me to read in future.
+    A Simple Database which may have CRUD operations (Not sure).
+    No binary tree or Hash Tables whatever beacuse iam too lazy to add that.
+*/
 
 // Function proto type that exists in other module
 extern U_Char Create_Database_Meta(FILE *file);
