@@ -1,6 +1,11 @@
-#include "Main.h"
 #include<stdio.h>
 #include "Resource.h"
+
+
+/*
+    This is The Last commit of 2024 :D , I hope in future i will able to build more complex software. and i will learn more.
+    Best luck to the future self....
+*/
 
 /*
     This is file contain code for connecting other module. Whole project is documented. added comments so it makes easy for me to read in future.
@@ -8,10 +13,13 @@
     No binary tree or Hash Tables whatever beacuse iam too lazy to add that.
 */
 
+
 // Function proto type that exists in other module
 extern U_Char Create_Database_Meta(FILE *file);
 extern U_Char Create_Table(const char *Database_Name, const char Table_Name[],Column_Data *Column_Struct, const U_Char Col_Size);
+extern Table_Cache *Request_Table_Info(FILE *file,char *Table_Name);
 
+extern char Error_Buffer[10];
 
 char Create_Database(char *Datbase_Name){
     // Create the Database
@@ -32,18 +40,8 @@ char Create_Database(char *Datbase_Name){
     return 0;
 }
 
-
-
-
-int main(){
-    char Return;
-
-    // Return = Create_Database("my.cdb");
-
-    // if(Return == 1){
-    //     printf("Creation Failed!");
-    // }
-    
+void Handle_Table_Command(){
+    U_Char Return;
 
     Column_Data Array[15];
     Column_Data Column1 = {"Name","String",50};
@@ -56,9 +54,44 @@ int main(){
 
     Return = Create_Table("my.cdb","Student",Array,3);
 
-    if(Return != 0){
+    if(Return == 6){
+        printf("\nThe Table is alredy exists.");
+    }
+
+    else if(Return != 0){
         printf("Something Gone Wrong!");
     }
+   
+    return;
+}
+
+void Handle_Insertion(){
+    FILE *file = fopen("my.cdb","rb");
+
+    Table_Cache *Cache = Request_Table_Info(file,"Student");
+
+    if(Cache == NULL){
+        printf("Error is = %s",Error_Buffer);
+    }
+
+    printf("\nSample Error = %s",Error_Buffer);
+
+    fclose(file);
+    return ;
+}
+
+
+
+int main(){
+    char Return;
+
+    // Return = Create_Database("my.cdb");
+
+    // if(Return == 1){
+    //     printf("Creation Failed!");
+    // }
+    
+    Handle_Insertion();
 
     return 0;
 }

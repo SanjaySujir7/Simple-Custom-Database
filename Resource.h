@@ -41,4 +41,31 @@ typedef struct {
 } Column_Data;
 
 
+// This is cache Table will hold data to do operations.
+typedef struct {
+    U_Char Cache_Exits;
+    char Table_Name[25];
+    U_Char Total_Columns;
+    U_Char Table_Head;
+    Column_Data Table_Columns[15];
+
+} Table_Cache;
+
+
+// Struct and Union combined to hold complicated data.
+// The minimum value of The string is 25 if it exceeds we should Dynamically allocate.
+typedef struct {
+
+    enum Type{
+        Integer,
+        String
+    } type;
+
+    union Value{
+        int Int;
+        char String[25];
+    } value;
+
+} Data;
+
 #endif
