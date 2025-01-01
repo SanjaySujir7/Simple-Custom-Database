@@ -1,11 +1,5 @@
-#include<stdio.h>
 #include "Resource.h"
 
-
-/*
-    This is The Last commit of 2024 :D , I hope in future i will able to build more complex software. and i will learn more.
-    Best luck to the future self....
-*/
 
 /*
     This is file contain code for connecting other module. Whole project is documented. added comments so it makes easy for me to read in future.
@@ -20,6 +14,11 @@ extern U_Char Create_Table(const char *Database_Name, const char Table_Name[],Co
 extern Table_Cache *Request_Table_Info(FILE *file,char *Table_Name);
 
 extern char Error_Buffer[10];
+
+// Pointer vaible for cache
+Table_Cache *T_Cache = NULL;
+
+
 
 char Create_Database(char *Datbase_Name){
     // Create the Database
@@ -67,14 +66,18 @@ void Handle_Table_Command(){
 
 void Handle_Insertion(){
     FILE *file = fopen("my.cdb","rb");
+    if(T_Cache == NULL){
+        Table_Cache *Cache = Request_Table_Info(file,"Student");
 
-    Table_Cache *Cache = Request_Table_Info(file,"Student");
-
-    if(Cache == NULL){
-        printf("Error is = %s",Error_Buffer);
+        if(Cache == NULL){
+            printf("Error is = %s",Error_Buffer);
+        }
+        else{
+            T_Cache = Cache;
+        }
     }
 
-    printf("\nSample Error = %s",Error_Buffer);
+    
 
     fclose(file);
     return ;

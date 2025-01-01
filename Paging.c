@@ -27,3 +27,8 @@ U_Char Create_Database_Meta(FILE *file){
     return 0;
 
 }
+
+U_Char Create_Data_Paging(FILE *file,char *Table_Name){
+    
+    return 0;
+}

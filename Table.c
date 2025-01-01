@@ -7,6 +7,8 @@
 */
 
 char Error_Buffer[10];
+extern Table_Cache *T_Cache;
+
 
 // This function is for creatign the table. Error Codes =[1,3,4,5,6]
 U_Char Create_Table(const char *Database_Name, char Table_Name[],Column_Data *Column_Struct, const U_Char Col_Size){
@@ -138,7 +140,7 @@ U_Char Create_Table(const char *Database_Name, char Table_Name[],Column_Data *Co
 }
 
 
-
+// Function to get details about table Error =[TisNULL,TNF]
 Table_Cache *Request_Table_Info(FILE *file,char *Table_Name){
 
     if(file == NULL){
@@ -208,7 +210,6 @@ Table_Cache *Request_Table_Info(FILE *file,char *Table_Name){
 
     // debug
     printf("\nCoulmn_Name = %s",Cache_Table.Table_Columns[2].Column_Name);
-    strncpy(Error_Buffer,"TF",10);
 
     return &Cache_Table;
 }
